@@ -2,15 +2,15 @@ bool isemptystring(const char* input)
 {
 if (string == NULL || string[0] == '\0')
   {
-        return TRUE; // The string is empty
+        return true; // The string is empty
   }
-  return FALSE;
+  return false;
 }
 
 
 int add(const char* string)
 {
-  if (isemptystring(string)==TRUE)
+  if (isemptystring(string)==true)
   {
         return 0; // The string is empty
   }
