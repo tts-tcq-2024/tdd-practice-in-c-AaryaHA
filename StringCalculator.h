@@ -10,7 +10,7 @@ if (string == NULL || string[0] == '\0')
 
 int add(const char* string)
 {
-  if (isemptystring==TRUE)
+  if (isemptystring(string)==TRUE)
   {
         return 0; // The string is empty
   }
