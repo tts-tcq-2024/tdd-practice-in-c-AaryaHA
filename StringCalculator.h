@@ -23,7 +23,7 @@ int add(const char* string)
   {
         return 0; // The string is empty
   }
-  if (return(string)==1)
+  if (return0(string)==1)
   {
         return 0; // The string is empty
   }
