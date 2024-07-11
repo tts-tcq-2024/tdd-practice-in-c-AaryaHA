@@ -7,10 +7,23 @@ if (input == NULL || input[0] == '\0')
   return false;
 }
 
+int return0(const char* input)
+{
+if (input == 0 )
+  {
+        return 1; // The string is empty
+  }
+  return 0;
+}
+
 
 int add(const char* string)
 {
   if (isemptystring(string)==true)
+  {
+        return 0; // The string is empty
+  }
+  if (return(string)==1)
   {
         return 0; // The string is empty
   }
