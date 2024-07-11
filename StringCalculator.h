@@ -9,9 +9,9 @@ if (input == NULL || input[0] == '\0')
 
 int return0(const char* input)
 {
-if (input == 0 )
+if (input == "0" )
   {
-        return 1; // The string is empty
+        return 1; // The string is 0
   }
   return 0;
 }
