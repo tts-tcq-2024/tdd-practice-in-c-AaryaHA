@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int Add(const char* input) {
+int add(const char* input) {
     if (input == NULL || *input == '\0') {
         return 0; // For an empty string or null input, return 0
     }
@@ -47,14 +47,14 @@ int Add(const char* input) {
 
 int main() {
     // Test cases
-    printf("%d\n", Add(""));           // Output: 0
-    printf("%d\n", Add("1"));          // Output: 1
-    printf("%d\n", Add("1,2"));        // Output: 3
-    printf("%d\n", Add("1\n2,3"));     // Output: 6
-    printf("%d\n", Add("//;\n1;2"));   // Output: 3
-    printf("%d\n", Add("//[]\n12***3"));// Output: 6
-    printf("%d\n", Add("2,1001"));     // Output: 2 (numbers > 1000 are ignored)
-    printf("%d\n", Add("-1,2"));       // Outputs error message for negative numbers
+    printf("%d\n", add(""));           // Output: 0
+    printf("%d\n", add("1"));          // Output: 1
+    printf("%d\n", add("1,2"));        // Output: 3
+    printf("%d\n", add("1\n2,3"));     // Output: 6
+    printf("%d\n", add("//;\n1;2"));   // Output: 3
+    printf("%d\n", add("//[]\n12***3"));// Output: 6
+    printf("%d\n", add("2,1001"));     // Output: 2 (numbers > 1000 are ignored)
+    printf("%d\n", add("-1,2"));       // Outputs error message for negative numbers
 
     return 0;
 }
