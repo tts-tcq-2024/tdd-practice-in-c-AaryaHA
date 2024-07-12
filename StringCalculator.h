@@ -5,7 +5,7 @@
 int add(const char* input) {
     if (input == NULL || *input == '\0') {
         return 0; // For an empty string or null input, return 0
-    }
+    } 
 
     // Determine the delimiter
     char delimiter = ',';
