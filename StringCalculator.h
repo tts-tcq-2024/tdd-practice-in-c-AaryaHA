@@ -2,52 +2,36 @@
 #include <stdlib.h>
 #include <string.h>
 
-int add(const char* input)
-{
-    if (input == NULL || *input == '\0') 
-    {
-        return 0; // For an empty string or null input, return 0
-    } 
-
-    // Determine the delimiter
-    char delimiter = ',';
-    if (strncmp(input, "//", 2) == 0) 
-    {
-        // Custom delimiter is specified
-        const char* delimStart = input + 2;
-        const char* delimEnd = strchr(delimStart, '\n');
-        if (delimEnd != NULL) 
-        {
-            delimiter = *delimStart;
-            input = delimEnd + 1; // Move input past the delimiter definition line
-        }
+int add(const char* input) {
+    if (strlen(input) == 0) {
+        return 0;
     }
 
-    // Calculate the sum of numbers
     int sum = 0;
-    char* token = strtok((char*)input, "\n,");
-    while (token != NULL)
-        {
-        // Convert token to integer
-        int number = atoi(token);
+    char* delim_start = strstr(input, "//");
+    char* numbers_start = (delim_start != NULL) ? delim_start + 2 : (char*)input;
 
-        // Handle negative numbers
-        if (number < 0)
-        {
-            char error_msg[50];
-            sprintf(error_msg, "negatives not allowed: %d", number);
-            fprintf(stderr, "%s\n", error_msg);
-            return -1; // You may choose to throw an exception or handle differently
+    char delimiter = ',';
+    if (delim_start != NULL) {
+        delimiter = *numbers_start;
+        numbers_start += 2; // Move past "//[delimiter]\n"
+    }
+
+    char* token = strtok(numbers_start, &delimiter);
+    while (token != NULL) {
+        int num = atoi(token);
+        if (num < 0) {
+            fprintf(stderr, "Negatives not allowed: %d\n", num);
+            return -1;
         }
-
-        // Ignore numbers greater than 1000
-        if (number <= 1000)
-        {
-            sum += number;
-        }
-
-        token = strtok(NULL, "\n,");
+        sum += (num <= 1000) ? num : 0;
+        token = strtok(NULL, &delimiter);
     }
 
     return sum;
+}
+
+// Test case: Negative numbers should throw exception
+void test_negative_numbers_throw_exception() {
+    assert(add("1,-2,3,-4") == -1);
 }
