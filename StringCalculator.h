@@ -1,21 +1,5 @@
-// add function
 
-int add(const char *ch)
-{
-    if(check_string(ch))
-    {
-        int total = sum(ch);
-
-        if(total > 0)
-        {
-            return total;
-        }
-        return 0;
-    }
-
-    return -1;
-}
-
+//input values should be less than 1001
 int add_arr(int *arr,int cnt)
 {
     int i = 0;
@@ -146,4 +130,22 @@ int check_string(const char *ch)
     }
 
     return 0;
+}
+
+// add function
+
+int add(const char *ch)
+{
+    if(check_string(ch))
+    {
+        int total = sum(ch);
+
+        if(total > 0)
+        {
+            return total;
+        }
+        return 0;
+    }
+
+    return -1;
 }
