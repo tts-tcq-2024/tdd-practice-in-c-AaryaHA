@@ -18,7 +18,7 @@ if (input == "0" )
 
 int ExpectSumForTwoNumbers(const char* input)
 {
-if (input[0] == "1" && input[1] == "2")
+if (input[0] == '1' && input[1] == '2')
   {
         return 1; // The string is 0
   }
