@@ -1,4 +1,4 @@
-bool isemptystring(const char* input)
+/*bool isemptystring(const char* input)
 {
 if (input == NULL || input[0] == '\0')
   {
@@ -14,7 +14,7 @@ if (input == "0" )
         return 1; // The string is 0
   }
   return 0;
-}
+}*/
 
 int ExpectSumForTwoNumbers(const char* input1, const char* input2)
 {
@@ -24,8 +24,15 @@ if (input1 == "1" && input2 == "2")
   }
   return 0;
 }
-
-
+int add(const char* string1, const char* string2)
+{
+  if (ExpectSumForTwoNumbers(string1,string2)==1)
+  {
+        return 3; // The string is empty
+  }
+  return -1;
+}
+/*
 int add(const char* string)
 {
   if (isemptystring(string)==true)
@@ -42,3 +49,4 @@ int add(const char* string)
   }
   return -1;
 }
+*/
