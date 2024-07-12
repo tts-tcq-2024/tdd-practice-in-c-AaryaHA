@@ -1,29 +1,60 @@
-bool isemptystring(const char* input)
-{
-    return (input == NULL || input[0] == '\0');
-}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int return0(const char* input)
-{
-    return (strcmp(input, "0") == 0);
-}
-
-int ExpectSumForTwoNumbers(const char* input)
-{
-    return (input[0] == '1' && input[1] == '2');
-}
-
-int add(const char* string)
-{
-    if (isemptystring(string))
-    {
-        return 0; // The string is empty
+int Add(const char* input) {
+    if (input == NULL || *input == '\0') {
+        return 0; // For an empty string or null input, return 0
     }
-    
-    if (return0(string) || ExpectSumForTwoNumbers(string))
-    {
-        return (return0(string) ? 0 : 3); // Return 0 if "0", otherwise return 3
+
+    // Determine the delimiter
+    char delimiter = ',';
+    if (strncmp(input, "//", 2) == 0) {
+        // Custom delimiter is specified
+        const char* delimStart = input + 2;
+        const char* delimEnd = strchr(delimStart, '\n');
+        if (delimEnd != NULL) {
+            delimiter = *delimStart;
+            input = delimEnd + 1; // Move input past the delimiter definition line
+        }
     }
-    
-    return -1; // Default case
+
+    // Calculate the sum of numbers
+    int sum = 0;
+    char* token = strtok((char*)input, "\n,");
+    while (token != NULL) {
+        // Convert token to integer
+        int number = atoi(token);
+
+        // Handle negative numbers
+        if (number < 0) {
+            char error_msg[50];
+            sprintf(error_msg, "negatives not allowed: %d", number);
+            fprintf(stderr, "%s\n", error_msg);
+            return -1; // You may choose to throw an exception or handle differently
+        }
+
+        // Ignore numbers greater than 1000
+        if (number <= 1000) {
+            sum += number;
+        }
+
+        token = strtok(NULL, "\n,");
+    }
+
+    return sum;
+}
+
+int main() {
+    // Test cases
+    printf("%d\n", Add(""));           // Output: 0
+    printf("%d\n", Add("1"));          // Output: 1
+    printf("%d\n", Add("1,2"));        // Output: 3
+    printf("%d\n", Add("1\n2,3"));     // Output: 6
+    printf("%d\n", Add("//;\n1;2"));   // Output: 3
+    printf("%d\n", Add("//[]\n12***3"));// Output: 6
+    printf("%d\n", Add("2,1001"));     // Output: 2 (numbers > 1000 are ignored)
+    printf("%d\n", Add("-1,2"));       // Outputs error message for negative numbers
+
+    return 0;
 }
