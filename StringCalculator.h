@@ -45,16 +45,5 @@ int add(const char* input) {
     return sum;
 }
 
-int main() {
-    // Test cases
-    printf("%d\n", add(""));           // Output: 0
-    printf("%d\n", add("1"));          // Output: 1
-    printf("%d\n", add("1,2"));        // Output: 3
-    printf("%d\n", add("1\n2,3"));     // Output: 6
-    printf("%d\n", add("//;\n1;2"));   // Output: 3
-    printf("%d\n", add("//[]\n12***3"));// Output: 6
-    printf("%d\n", add("2,1001"));     // Output: 2 (numbers > 1000 are ignored)
-    printf("%d\n", add("-1,2"));       // Outputs error message for negative numbers
-
     return 0;
 }
