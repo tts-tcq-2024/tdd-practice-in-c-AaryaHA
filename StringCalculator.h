@@ -1,43 +1,29 @@
 bool isemptystring(const char* input)
 {
-if (input == NULL || input[0] == '\0')
-  {
-        return true; // The string is empty
-  }
-  return false;
+    return (input == NULL || input[0] == '\0');
 }
 
 int return0(const char* input)
 {
-if (input == "0" )
-  {
-        return 1; // The string is 0
-  }
-  return 0;
+    return (strcmp(input, "0") == 0);
 }
 
 int ExpectSumForTwoNumbers(const char* input)
 {
-if (input[0] == '1' && input[1] == '2')
-  {
-        return 1; // The string is 0
-  }
-  return 0;
+    return (input[0] == '1' && input[1] == '2');
 }
 
 int add(const char* string)
 {
-  if (isemptystring(string)==true)
-  {
+    if (isemptystring(string))
+    {
         return 0; // The string is empty
-  }
-  if (return0(string)==1)
-  {
-        return 0; // The string is empty
-  }
-  if (ExpectSumForTwoNumbers(string)==1)
-  {
-        return 3; // The string is empty
-  }
-  return -1;
+    }
+    
+    if (return0(string) || ExpectSumForTwoNumbers(string))
+    {
+        return (return0(string) ? 0 : 3); // Return 0 if "0", otherwise return 3
+    }
+    
+    return -1; // Default case
 }
