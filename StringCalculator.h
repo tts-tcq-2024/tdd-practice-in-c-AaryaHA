@@ -8,16 +8,17 @@ int add(const char* input) {
     }
 
     int sum = 0;
-    char* delim_start = strstr((char*)input, "//");
-    char* numbers_start = (delim_start != NULL) ? delim_start + 2 : (char*)input;
-
     char delimiter = ',';
-    if (delim_start != NULL) {
-        delimiter = *numbers_start;
-        numbers_start += 2; // Move past "//[delimiter]\n"
+    const char* numbers_start = input;
+
+    // Check for custom delimiter
+    if (input[0] == '/' && input[1] == '/') {
+        delimiter = input[2];
+        numbers_start = strchr(input, '\n') + 1;
     }
 
-    char* token = strtok(numbers_start, &delimiter);
+    // Tokenize using the identified delimiter
+    char* token = strtok((char*)numbers_start, &delimiter);
     while (token != NULL) {
         int num = atoi(token);
         if (num < 0) {
