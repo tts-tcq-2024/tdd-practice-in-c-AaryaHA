@@ -3,13 +3,14 @@
 
 TEST(StringCalculatorAddTests, ExpectZeroForEmptyInput) {
     int expectedresult = 0;
-    const char* input = "";
+    const char* input = "Hello, world!";
     int result = add(input);
     ASSERT_EQ(result, expectedresult);
 }
 
+
 TEST(StringCalculatorAddTests, ExpectZeroForSingleZero) {
-    int expectedresult = 0; 
+    int expectedresult = 0;
     const char* input = "0";
     int result = add(input);
     ASSERT_EQ(result, expectedresult);
@@ -43,3 +44,44 @@ TEST(StringCalculatorAddTests, ExpectSumWithCustomDelimiter) {
     ASSERT_EQ(result, expectedresult);
 }
 
+TEST(StringCalculatorAddTests, ExpectSumoftwonumlessthan1000) {
+    int expectedresult = 1009;
+    const char*  input = "10,999";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, negativeinputignore) {
+    int expectedresult = -1;
+    const char*  input = "-1";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, nullstring) {
+    int expectedresult = -1;
+    const char*  input = NULL;
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, emptystring) {
+    int expectedresult = 0;
+    const char*  input = "";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, posandnegstring) {
+    int expectedresult = -1;
+    const char*  input = "1,-2";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
+
+TEST(StringCalculatorAddTests, numnegsymbolstring) {
+    int expectedresult = 3;
+    const char*  input = "1,-,2";
+    int result = add(input);
+    ASSERT_EQ(result, expectedresult);
+}
